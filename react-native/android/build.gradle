@@ -54,6 +54,10 @@ android {
 }
 
 repositories {
+  maven {
+    url "https://github.com/word-up/ffmpeg-kit-binaries/raw/main/android"
+  }
+
   mavenCentral()
   google()
 
