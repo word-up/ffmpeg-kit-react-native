@@ -14,7 +14,11 @@ Pod::Spec.new do |s|
   s.requires_arc      = true
   s.static_framework  = true
 
-  s.source       = { :git => "https://github.com/word-up/ffmpeg-kit.git", :branch => "main" }
+  s.source       = { 
+    :git => "https://github.com/word-up/ffmpeg-kit.git", 
+    :tag => package["version"],
+    :http => 'https://github.com/word-up/ffmpeg-kit-binaries/raw/main/ios/6.0/ffmpeg-kit-ios-audio-6.0.zip'
+  }
 
   s.default_subspec   = 'https'
 
@@ -81,9 +85,6 @@ Pod::Spec.new do |s|
                              '**/FFmpegKitReactNativeModule.h'
       ss.dependency 'ffmpeg-kit-ios-audio', "6.0"
       ss.ios.deployment_target = '12.1'
-      ss.source = { 
-          :http => 'https://github.com/word-up/ffmpeg-kit-binaries/raw/main/ios/6.0/ffmpeg-kit-ios-audio-6.0.zip'
-      }
   end
 
   s.subspec 'audio-lts' do |ss|
@@ -135,4 +136,4 @@ Pod::Spec.new do |s|
       ss.ios.deployment_target = '10'
   end
 
-end
+end 
