@@ -1,6 +1,3 @@
-source 'https://github.com/YOUR_USERNAME/ffmpeg-kit-pod-specs.git'
-source 'https://cdn.cocoapods.org/'
-
 require "json"
 
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
