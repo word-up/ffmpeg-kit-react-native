@@ -20,6 +20,16 @@ Pod::Spec.new do |s|
     :http => 'https://github.com/word-up/ffmpeg-kit-binaries/raw/main/ios/6.0/ffmpeg-kit-ios-audio-6.0.zip'
   }
 
+  s.preserve_paths = '*.xcframework'
+  s.vendored_frameworks = 'ffmpegkit.xcframework',
+                         'libavcodec.xcframework',
+                         'libavdevice.xcframework',
+                         'libavfilter.xcframework',
+                         'libavformat.xcframework',
+                         'libavutil.xcframework',
+                         'libswresample.xcframework',
+                         'libswscale.xcframework'
+
   s.default_subspec   = 'https'
 
   s.dependency "React-Core"
