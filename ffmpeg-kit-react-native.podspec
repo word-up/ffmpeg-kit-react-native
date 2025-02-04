@@ -15,9 +15,8 @@ Pod::Spec.new do |s|
   s.static_framework  = true
 
   s.source       = { 
-    :git => "https://github.com/word-up/ffmpeg-kit.git", 
-    :tag => package["version"],
-    :http => 'https://github.com/word-up/ffmpeg-kit-binaries/raw/main/ios/6.0/ffmpeg-kit-ios-audio-6.0.zip'
+    :http => 'https://github.com/word-up/ffmpeg-kit-binaries/raw/main/ios/6.0/ffmpeg-kit-ios-audio-6.0.zip',
+    :type => 'zip'
   }
 
   s.preserve_paths = '*.xcframework'
