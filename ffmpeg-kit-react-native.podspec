@@ -19,17 +19,6 @@ Pod::Spec.new do |s|
     :type => 'zip'
   }
 
-
-  s.preserve_paths = '*.xcframework'
-  s.vendored_frameworks = 'ffmpegkit.xcframework',
-                         'libavcodec.xcframework',
-                         'libavdevice.xcframework',
-                         'libavfilter.xcframework',
-                         'libavformat.xcframework',
-                         'libavutil.xcframework',
-                         'libswresample.xcframework',
-                         'libswscale.xcframework'
-
   s.default_subspec   = 'https'
 
   s.dependency "React-Core"
@@ -95,10 +84,6 @@ Pod::Spec.new do |s|
                              '**/FFmpegKitReactNativeModule.h'
       ss.dependency 'ffmpeg-kit-ios-audio', "6.0"
       ss.ios.deployment_target = '12.1'
-      ss.source       = { 
-        :http => 'https://github.com/word-up/ffmpeg-kit-binaries/raw/main/ios/6.0/ffmpeg-kit-ios-audio-6.0.zip',
-        :type => 'zip'
-      }
   end
 
   s.subspec 'audio-lts' do |ss|
