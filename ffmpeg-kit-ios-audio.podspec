@@ -1,9 +1,14 @@
+require "json"
+
+package = JSON.parse(File.read(File.join(__dir__, "package.json")))
+
 Pod::Spec.new do |s|
     s.name         = "ffmpeg-kit-ios-audio"
     s.version      = "6.0"
     s.summary      = "FFmpegKit iOS Audio Binary"
     s.homepage     = "https://github.com/word-up/ffmpeg-kit-binaries"
     s.license      = { :type => "MIT" }
+    s.authors      = package["author"]
   
     s.platform          = :ios, '12.1'
     s.requires_arc      = true
