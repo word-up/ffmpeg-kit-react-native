@@ -1,3 +1,5 @@
+import java.nio.file.Paths
+
 buildscript {
   repositories {
     google()
@@ -10,6 +12,26 @@ buildscript {
 }
 
 apply plugin: 'com.android.library'
+
+// https://github.com/facebook/react-native/blob/a70354df12ef71aec08583cca4f1fed5fb77d874/ReactAndroid/build.gradle#L168-L201
+def findNodeModulePath(baseDir, packageName) {
+  def basePath = baseDir.toPath().normalize()
+  // Node's module resolution algorithm searches up to the root directory,
+  // after which the base path will be null
+  while (basePath) {
+    def candidatePath = Paths.get(basePath.toString(), "node_modules", packageName)
+    if (candidatePath.toFile().exists()) {
+      return candidatePath.toString()
+    }
+    basePath = basePath.getParent()
+  }
+  return null
+}
+
+def rnFfmpegDir = findNodeModulePath(projectDir, "ffmpeg-kit-react-native") ?: "$rootDir/../node_modules/ffmpeg-kit-react-native"
+println ":${project.name} ffmpeg-kit-react-native found at $rnFfmpegDir"
+
+
 
 static def safePackageName(String packageName) {
   packageName.replace("-lts", "")
@@ -130,4 +152,13 @@ repositories {
 dependencies {
   api 'com.facebook.react:react-native:+'
   implementation 'com.arthenica:ffmpeg-kit-' + safePackageName(safeExtGet('ffmpegKitPackage', 'https')) + ':' + safePackageVersion(safeExtGet('ffmpegKitPackage', 'https'))
+}
+
+
+rootProject.allprojects {
+  repositories {
+    maven {
+      url "$rnFfmpegDir/android/libs"
+    }
+  }
 }
